@@ -71,11 +71,9 @@ export default class loginComponent extends React.Component {
   componentWillMount() {
     ThemeManager.setComponentThemes({
       textField: {
-//        borderColor: Colors.amber700,
         borderColor: Colors.blue700,
       },
       menuItem: {
-//        selectedTextColor: Colors.amber700,
         selectedTextColor: Colors.blue700,
       },
     });
@@ -84,8 +82,8 @@ export default class loginComponent extends React.Component {
   render() {
     const menuItems = [
       { payload: '1', text: 'English' },
-//      { payload: '2', text: '繁體中文' },
-//      { payload: '3', text: '简体中文' },
+      { payload: '2', text: '繁體中文' },
+      { payload: '3', text: '简体中文' },
     ];
 
     let defaultRouter = '';
@@ -107,12 +105,12 @@ export default class loginComponent extends React.Component {
                 onChange={
                   (e, sel)=> {
                     switch (sel) {
-                    /*case 1:
+                    case 1:
                       window.location.href = defaultRouter + '/zh-tw.html';
                       break;
                     case 2:
                       window.location.href = defaultRouter + '/zh-cn.html';
-                      break;*/
+                      break;
                     default:
                       window.location.href = defaultRouter + '/';
                       break;
@@ -120,7 +118,6 @@ export default class loginComponent extends React.Component {
                   }
                 }
                 labelStyle={{
-//                  color: Colors.amber700,
                   color: Colors.blue700,
                   lineHeight: '60px',
                   fontSize: '16px' }}
@@ -128,7 +125,6 @@ export default class loginComponent extends React.Component {
               <a
                 onTouchTap={ this._logOut }
                 style={{
-//                  color: Colors.amber700,
                   color: Colors.blue700,
                   textDecoration: 'none',
                   cursor: 'pointer',
