@@ -524,7 +524,7 @@ export default class networkComponent extends React.Component {
       break;
     }
 
-    if (this.state.boardModel === 'Xetal MiCa7688') {
+    if (this.state.boardModel === 'Xetal Xetal7688') {
       boardImg = icon7688;
     }
 

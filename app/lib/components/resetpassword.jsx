@@ -104,7 +104,7 @@ export default class resetPasswordComponent extends React.Component {
             lineHeight: '22px',
             marginTop: '40px',
             fontFamily: 'RionaSansLight,Arial,Helvetica,sans-serif',
-          }}>{__('Welcome to')} <b>MiCa7688</b></p>
+          }}>{__('Welcome to')} <b>Xetal7688</b></p>
           <p style={{ color: '#69BE28', marginTop: '-10px' }}>{__('Please set a password.')}</p>
           <TextField
             hintText={ __('Input your Account') }

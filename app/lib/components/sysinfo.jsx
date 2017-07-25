@@ -276,7 +276,7 @@ export default class sysinfoComponent extends React.Component {
         marginBottom: '44px',
       };
     }
-    if (this.state.boardModel === 'Xetal MiCa7688') {
+    if (this.state.boardModel === 'Xetal Xetal7688') {
       boardImg = icon7688;
     } else {
       boardImg = icon7688;
