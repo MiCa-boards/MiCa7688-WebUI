@@ -229,7 +229,7 @@ export default class sysinfoComponent extends React.Component {
             transform: 'perspective(1px) scale(0.75) translate3d(2px, -28px, 0)',
             transformOrigin: 'left top',
             marginBottom: '0px',
-            marginTop: '40px'}}>{__('Upgrade firmware file')}</h3>
+            marginTop: '40px'}}>{__('Select upgrade file')}</h3>
           <p style={{
             borderBottom: '1px solid #D1D2D3',
             fontSize: '16px',
@@ -249,7 +249,7 @@ export default class sysinfoComponent extends React.Component {
             transformOrigin: 'left top',
             marginBottom: '0px',
             marginTop: '40px',
-          }}>__('Upgrade firmware file')</h3>
+          }}>__('Select upgrade file')</h3>
           <p style={{
             borderBottom: '1px solid #D1D2D3',
             fontSize: '16px',
@@ -426,14 +426,14 @@ export default class sysinfoComponent extends React.Component {
       <div style={ styles.content } key="softwareBlock">
         <h3 style={styles.h3}>{ __('Software information') }</h3>
         <h3 style={ styles.panelTitle }>{ __('Boot loader version') }</h3>
-        <p style={ styles.panelContent }>{ this.state.bootLoaderVersion }</p>
+        <p style={ styles.panelContent }>{ __('MiCa Proprietary Custom boot loader') }</p>
         <h3 style={ styles.panelTitle }>{ __('Firmware version') }</h3>
-        <p style={ styles.panelContent }>{ this.state.firmwareVersion }</p>
+        <p style={ styles.panelContent }>{ __('MiCa Proprietary Kinsei firmware') }</p>
 
         <RaisedButton
           linkButton
           secondary
-          label={ __('Upgrade firmware') }
+          label={ __('Upgrade software') }
           backgroundColor={ Colors.blue700 }
           onTouchTap={
             ()=> {
@@ -441,10 +441,28 @@ export default class sysinfoComponent extends React.Component {
             }
           }
           style={{
-            width: '100%',
+            width: '48%',
             textAlign: 'center',
             marginTop: '-20px',
             marginBottom: '20px',
+            marginRight: '5px',
+          }} />
+        <RaisedButton
+              linkButton
+              secondary
+              label={ __('Download Config') }
+              backgroundColor={ Colors.blue700 }
+              onTouchTap={
+                () => {
+                    this._editSoftwareBlock(true);
+                }
+              }
+          style={{
+            width: '48%',
+            textAlign: 'center',
+            marginTop: '-20px',
+            marginBottom: '20px',
+            marginLeft: '5px',
           }} />
       </div>
     );
@@ -452,11 +470,7 @@ export default class sysinfoComponent extends React.Component {
     if (this.state.SoftwareBlockIsEdit) {
       softwareBlock = (
         <div style={ styles.content } key="softwareBlock">
-          <h3 style={ styles.h3 }>{__('Software information')}</h3>
-          <h3 style={ styles.panelTitle }>{ __('Boot loader version') }</h3>
-          <p style={ styles.panelContent }>{ this.state.bootLoaderVersion }</p>
-          <h3 style={ styles.panelTitle }>{ __('Firmware version') }</h3>
-          <p style={ styles.panelContent }>{ this.state.firmwareVersion }</p>
+          <h3 style={ styles.h3 }>{__('Software Update')}</h3>
           <Dropzone onDrop={ this._onDrop } style={{ width: '100%', cursor: 'pointer' }}>
             { DropzoneContent }
           </Dropzone>
@@ -495,26 +509,31 @@ export default class sysinfoComponent extends React.Component {
             <RaisedButton
               linkButton
               label={ __('Cancel') }
-              backgroundColor="#EDEDED"
-              labelColor="#999A94"
+              backgroundColor={ Colors.blue700 }
+              labelColor= {Colors.white}
+              labelStyle={{
+                      fontSize: '12px'
+              }}
               style={{
-                width: '236px',
+                width: '100px',
                 flexGrow: 1,
                 textAlign: 'center',
                 marginTop: '20px',
                 marginBottom: '20px',
-                marginRight: '10px',
+                marginLeft: '5px',
+                marginRight: '5px',
               }}
-              disabled={ this.state.upgradeFirmware }
+              disabled={ false }
               onTouchTap={
                 () => {
                   this._editSoftwareBlock(false);
                 }
               } />
+              
             <RaisedButton
               linkButton
               secondary
-              label={ __('Upgrade & Restart') }
+              label={ __('Upgrade Firmware') }
               backgroundColor={ Colors.blue700 }
               disabled={ this.state.upgradeFirmware }
               onTouchTap={
@@ -522,13 +541,40 @@ export default class sysinfoComponent extends React.Component {
                   this._onSubmitFirmware(this.state.files[0]);
                 }
               }
+              labelStyle={{
+                fontSize: '12px'
+              }}
               style={{
-                width: '236px',
+                width: '100px',
                 flexGrow: 1,
                 textAlign: 'center',
                 marginTop: '20px',
                 marginBottom: '20px',
-                marginLeft: '10px',
+                marginLeft: '5px',
+                marginRight: '5px',
+              }} />
+            <RaisedButton
+              linkButton
+              secondary
+              label={ __('Upgrade Config') }
+              backgroundColor={ Colors.blue700 }
+              disabled={ this.state.upgradeFirmware }
+              onTouchTap={
+                () => {
+                  this._onSubmitFirmware(this.state.files[0]);
+                }
+              }
+              labelStyle={{
+                fontSize: '12px'
+              }}
+              style={{
+                width: '100px',
+                flexGrow: 1,
+                textAlign: 'center',
+                marginTop: '20px',
+                marginBottom: '20px',
+                marginLeft: '5px',
+                marginRight: '5px',
               }} />
           </div>
         </div>
@@ -708,8 +754,7 @@ export default class sysinfoComponent extends React.Component {
       if (reply.code && reply.stdout) {
         throw "Image check failed - " + reply.stdout;
       }
-      return AppActions.activeFirmware(window.session);
-    })
+     })
     .then(() => {
       this$.refs.uploadDialog.dismiss();
       return this$.refs.upgradeFirmwareSuccessedDialog.show();
