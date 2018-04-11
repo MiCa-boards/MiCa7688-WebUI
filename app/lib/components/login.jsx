@@ -159,7 +159,11 @@ export default class loginComponent extends React.Component {
               lineHeight: '22px',
               marginTop: '40px',
               fontFamily: 'RionaSansLight,Arial,Helvetica,sans-serif',
+<<<<<<< HEAD
             }}><span style={{fontFamily: 'RionaSansLight,Arial,Helvetica,sans-serif'}}>{__('Welcome to')}</span> <b style={{ fontFamily: 'RionaSansMedium,Arial,Helvetica,sans-serif' }}>MiCa7688</b>.</p>
+=======
+            }}><span style={{fontFamily: 'RionaSansLight,Arial,Helvetica,sans-serif'}}>{__('Welcome to')}</span> <b style={{ fontFamily: 'RionaSansMedium,Arial,Helvetica,sans-serif' }}>Xetal7688</b>.</p>
+>>>>>>> xetal/master
             <h3 style={ styles.panelTitle }>{__('Account')}</h3>
             <p style={ styles.panelContent }>root(default)</p>
             <TextField
